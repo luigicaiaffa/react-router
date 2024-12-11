@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import Posts from "./pages/Posts";
 import ShowPost from "./pages/ShowPost";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" Component={About} />
           <Route path="/posts" Component={Posts} />
           <Route path="/posts/:id" Component={ShowPost} />
+          <Route path="/not-found" Component={NotFound} />
         </Route>
       </Routes>
     </BrowserRouter>

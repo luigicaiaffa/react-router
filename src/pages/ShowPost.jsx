@@ -1,15 +1,29 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ShowPost() {
   const [postData, setPostData] = useState(null);
+  const goToPage = useNavigate();
   const { id } = useParams();
 
   const fetchPostData = () => {
     fetch(`http://localhost:3000/posts/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 404) {
+            goToPage("/not-found");
+          }
+
+          throw new Error("Qualcosa è andato storto");
+        }
+
+        return res.json();
+      })
       .then((data) => {
         setPostData(data);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
 
@@ -52,7 +66,6 @@ export default function ShowPost() {
                         {postData.category}
                       </div>
                     </li>
-
                     <li className="list-group-item">
                       <div className="card-text">
                         <p>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Posts() {
   const [postsData, setPostsData] = useState(null);
@@ -66,7 +66,12 @@ export default function Posts() {
                           >
                             <i className="fa-solid fa-circle-info"></i>
                           </NavLink>
-                          <button className="btn btn-danger ms-1">
+                          <button
+                            type="button"
+                            className="btn btn-danger ms-1"
+                            data-bs-toggle="modal"
+                            data-bs-target={`#delete-modal-id`}
+                          >
                             <i className="fa-solid fa-trash"></i>
                           </button>
                         </div>
