@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Posts() {
-  const [postsData, setPostsData] = useState(null);
+  const [postsData, setPostsData] = useState([]);
+
+  useEffect(() => {
+    fetchPostsData();
+  }, []);
 
   const fetchPostsData = () => {
     fetch("http://localhost:3000/posts")
@@ -12,11 +16,19 @@ export default function Posts() {
       });
   };
 
-  useEffect(() => {
-    fetchPostsData();
-  }, []);
+  const fetchDeletePost = (id) => {
+    fetch(`http://localhost:3000/posts/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res)
+      .then(() => {
+        fetchPostsData();
+      });
+  };
 
-  console.log(postsData);
+  const handleDeleteButton = (id) => {
+    fetchDeletePost(id);
+  };
 
   return (
     <>
@@ -67,10 +79,8 @@ export default function Posts() {
                             <i className="fa-solid fa-circle-info"></i>
                           </NavLink>
                           <button
-                            type="button"
                             className="btn btn-danger ms-1"
-                            data-bs-toggle="modal"
-                            data-bs-target={`#delete-modal-id`}
+                            onClick={() => handleDeleteButton(post.id)}
                           >
                             <i className="fa-solid fa-trash"></i>
                           </button>
