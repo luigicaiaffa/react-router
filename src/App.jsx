@@ -7,6 +7,7 @@ import DefaultLayout from "./layout/DefaultLayout";
 import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import Posts from "./pages/Posts";
+import ShowPost from "./pages/ShowPost";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" Component={HomePage} />
           <Route path="/about" Component={About} />
           <Route path="/posts" Component={Posts} />
+          <Route path="/posts/:id" Component={ShowPost} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Posts() {
   const [postsData, setPostsData] = useState(null);
@@ -53,7 +54,13 @@ export default function Posts() {
                       </td>
                       <td>
                         <div className="d-flex justify-content-end">
-                          <button className="btn btn-danger mx-1">
+                          <Link
+                            to={`/posts/${post.id}`}
+                            className="btn btn-primary ms-1"
+                          >
+                            <i className="fa-solid fa-circle-info"></i>
+                          </Link>
+                          <button className="btn btn-danger ms-1">
                             <i className="fa-solid fa-trash"></i>
                           </button>
                         </div>
