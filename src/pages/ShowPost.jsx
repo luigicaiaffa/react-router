@@ -1,23 +1,47 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function ShowPost(id) {
-  const [postsData, setPostsData] = useState(null);
+export default function ShowPost() {
+  const [postData, setPostData] = useState(null);
+  const { id } = useParams();
 
-  const fetchPostsData = () => {
-    fetch("http://localhost:3000/posts")
+  const fetchPostData = () => {
+    fetch(`http://localhost:3000/posts/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setPostsData(data);
+        setPostData(data);
       });
   };
 
   useEffect(() => {
-    fetchPostsData();
+    fetchPostData();
   }, []);
 
   return (
     <div className="container">
       <h1 className="mt-5">Post</h1>
+      <div className="card mt-4">
+        <div className="row g-0">
+          <div className="col-md-4">
+            <img src="..." className="img-fluid rounded-start" alt="..." />
+          </div>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title">Card title</h5>
+              <p className="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <p className="card-text">
+                <small className="text-body-secondary">
+                  Last updated 3 mins ago
+                </small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
