@@ -1,11 +1,11 @@
 # Consegna
 
-Creiamo il frontend del nostro Blog e le sue pagine!
-- Partiamo installando React Router DOM: npm install react-router-dom
-- Definiamo almeno 3 pagine: una homepage, una pagina “chi siamo” e una pagina con la lista dei post 
-- Implementiamo una navbar in comune a tutte le pagine per poter navigare tra loro
+Completiamo il nostro routing con l’aggiunta delle pagine di dettaglio!
+
+- Recuperiamo la lista completa dei posts da Express
+- Aggiungiamo alla lista i link alle pagine di dettaglio dei post
+- Facciamo quindi in modo di raggiungere la pagina di dettaglio del singolo post
 
 # Bonus
 
-- Centralizzare la Navbar grazie a un Layout
-- Gestire la classe active
+-Gestire l'eliminazione di una risorsa
