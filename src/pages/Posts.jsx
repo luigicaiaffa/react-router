@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Posts() {
   const [postsData, setPostsData] = useState(null);
@@ -43,8 +43,14 @@ export default function Posts() {
                         <img src={post.image} alt="img" width="65" />
                       </th>
                       <td>{post.title}</td>
-                      <td>{post.author}</td>
-                      <td>{post.category}</td>
+                      <td>
+                        <i>&#45; {post.author}</i>
+                      </td>
+                      <td>
+                        <span className="badge text-bg-primary">
+                          {post.category}
+                        </span>
+                      </td>
                       <td>
                         {post.pubblished ? (
                           <i className="fa-solid fa-square-check text-success"></i>
@@ -54,12 +60,12 @@ export default function Posts() {
                       </td>
                       <td>
                         <div className="d-flex justify-content-end">
-                          <Link
+                          <NavLink
                             to={`/posts/${post.id}`}
-                            className="btn btn-primary ms-1"
+                            className="btn btn-light ms-1"
                           >
                             <i className="fa-solid fa-circle-info"></i>
-                          </Link>
+                          </NavLink>
                           <button className="btn btn-danger ms-1">
                             <i className="fa-solid fa-trash"></i>
                           </button>

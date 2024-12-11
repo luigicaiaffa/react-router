@@ -8,4 +8,4 @@ Completiamo il nostro routing con l’aggiunta delle pagine di dettaglio!
 
 # Bonus
 
--Gestire l'eliminazione di una risorsa
+- Gestire l'eliminazione di una risorsa

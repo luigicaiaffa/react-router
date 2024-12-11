@@ -4,9 +4,9 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" to="/">
           React
-        </Link>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"

@@ -19,29 +19,59 @@ export default function ShowPost() {
 
   return (
     <div className="container">
-      <h1 className="mt-5">Post</h1>
-      <div className="card mt-4">
-        <div className="row g-0">
-          <div className="col-md-4">
-            <img src="..." className="img-fluid rounded-start" alt="..." />
-          </div>
-          <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p className="card-text">
-                <small className="text-body-secondary">
-                  Last updated 3 mins ago
-                </small>
-              </p>
+      {postData && (
+        <>
+          <h1 className="mt-5">{postData.title}</h1>
+          <div className="card mt-4">
+            <div className="row g-0">
+              <div className="col-md-4 d-flex">
+                <img
+                  src={postData.image}
+                  className="img-fluid rounded-start"
+                  alt="img"
+                />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                      <div className="card-text">
+                        <strong>Autore: </strong>
+                        <i>{postData.author}</i>
+                      </div>
+                    </li>
+                    <li className="list-group-item">
+                      <div className="card-text">
+                        <strong>Contenuto</strong>
+                        {postData.content}
+                      </div>
+                    </li>
+                    <li className="list-group-item">
+                      <div className="card-text">
+                        <strong>Categoria: </strong>
+                        {postData.category}
+                      </div>
+                    </li>
+
+                    <li className="list-group-item">
+                      <div className="card-text">
+                        <p>
+                          <strong>Stato Pubblicazione:</strong>
+                          {postData.pubblished ? (
+                            <i className="ms-2 fa-solid fa-square-check text-success"></i>
+                          ) : (
+                            <i className="ms-2 fa-solid fa-square-xmark text-danger"></i>
+                          )}
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }
