@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export default function Posts() {
@@ -45,6 +44,7 @@ export default function Posts() {
     <>
       <div className="container">
         <h1 className="mt-5">Lista dei Post</h1>
+
         <div className="p-3">
           <table className="table table-hover">
             <thead>
@@ -57,6 +57,7 @@ export default function Posts() {
                 <th scope="col"></th>
               </tr>
             </thead>
+
             <tbody>
               {postsData &&
                 postsData.map((post) => {

@@ -35,8 +35,21 @@ export default function ShowPost() {
     <div className="container">
       {postData && (
         <>
-          <h1 className="mt-5">{postData.title}</h1>
-          <div className="card mt-4">
+          <div className="d-flex justify-content-between align-items-center mt-5">
+            <div>
+              <h1>{postData.title}</h1>
+            </div>
+            <div>
+              <button
+                className="btn btn-primary"
+                onClick={() => goToPage("/posts")}
+              >
+                Torna alla Lista
+              </button>
+            </div>
+          </div>
+
+          <div className="card mt-3">
             <div className="row g-0">
               <div className="col-md-4 d-flex">
                 <img
