@@ -1,8 +1,18 @@
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 export default function Posts() {
   const [postsData, setPostsData] = useState([]);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [toDeleteId, setToDeleteId] = useState(undefined);
+  const toDeletePost = postsData.find((post) => post.id === toDeleteId);
 
   useEffect(() => {
     fetchPostsData();
@@ -27,6 +37,7 @@ export default function Posts() {
   };
 
   const handleDeleteButton = (id) => {
+    handleClose();
     fetchDeletePost(id);
   };
 
@@ -80,7 +91,10 @@ export default function Posts() {
                           </NavLink>
                           <button
                             className="btn btn-danger ms-1"
-                            onClick={() => handleDeleteButton(post.id)}
+                            onClick={() => {
+                              setToDeleteId(post.id);
+                              handleShow();
+                            }}
                           >
                             <i className="fa-solid fa-trash"></i>
                           </button>
@@ -93,6 +107,37 @@ export default function Posts() {
           </table>
         </div>
       </div>
+
+      <Modal
+        key={toDeletePost && toDeletePost.id}
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="text-danger fs-5">
+            Stai eliminando: {toDeletePost && toDeletePost.title}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="d-flex flex-column">
+          <div className="p-2">
+            Quest'azione è irreversibile, procedere comunque?
+          </div>
+          <div className="align-self-end mt-3">
+            <button className="btn btn-secondary ms-2" onClick={handleClose}>
+              Annulla
+            </button>
+            <button
+              className="btn btn-danger ms-2"
+              onClick={() => handleDeleteButton(toDeletePost.id)}
+            >
+              Elimina
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
